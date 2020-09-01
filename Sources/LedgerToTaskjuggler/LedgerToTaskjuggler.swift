@@ -1,21 +1,6 @@
 import Foundation
 
-
-// func filterPrint(lines: [String], with: String) {
-//     var i = 0
-//     while i < lines.count {
-//         if isClockIn(line: lines[i]) && lines[i].contains(with) {
-//             print(lines[i])
-//             print(lines[i+1])
-//             print()
-//             i += 2
-//         } else {
-//             i += 1
-//         }
-//     }
-// }
-
-func createBookingLines(from: [Booking]) -> [String] {
+public func createBookingLines(from: [Booking]) -> [String] {
     // TODO Get bookings in the style below
 
     let bookingsByDate = Dictionary(grouping: from.filter { b in b.hourDuration != 0.0 }, by: { $0.date })

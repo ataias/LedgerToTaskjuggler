@@ -6,27 +6,27 @@
 //
 
 import Foundation
-import ledger_to_tj
+import LedgerToTaskjuggler
 
 let args = CommandLine.arguments
 if args.count != 5 {
-    print("Usage: freepla-tj period accountPrefix level ledger.timeclock bookings.tji")
+    print("Usage: freepla-tj accountPrefix level ledger.timeclock fromDate ToDate")
+    print("Dates should be in format yyyy-MM-dd")
 } else {
     let accountPrefix = args[1]
     let level = args[2]
     let ledgerFile = args[3]
+    let fromDate = args[4]
+    let toDate = args[5]
 
-    var arguments = [ "-f", ledgerFile,
-                   "bal", accountPrefix, level]
-//    if let (fromDate, toDate) = getDateRange(bookingsFilename: args[4]) {
-        // arguments.append(contentsOf: ["-p", "from \(fromDate) to \(toDate)"])
-        arguments.append(contentsOf: ["-p", "this week"])
-//    }
+    var arguments = ["hledger", "-f", ledgerFile,
+                     "bal", accountPrefix, level]
+    arguments.append(contentsOf: ["-p", "from \(fromDate) to \(toDate)"])
     arguments.append(contentsOf: ["--daily", "-O", "csv"])
 
     let newBookingsStr = shell(
-      launchPath: "/usr/local/bin/hledger",
-      arguments: arguments)
+        launchPath: "/usr/bin/env",
+        arguments: arguments)
 
     let newBookings = getNewBookings(from: newBookingsStr, accountPrefix: accountPrefix)
     let newBookingsForFile = createBookingLines(from: newBookings)

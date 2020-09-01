@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Booking {
+public struct Booking {
     let account: String
     let date: String
     let hourDuration: Double
