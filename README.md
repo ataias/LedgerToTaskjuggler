@@ -29,3 +29,7 @@ l2tj LEDGERACCOUNTPREFIX LEVEL myfile.timeclock 2020-08-25 2020-08-30
 - `LEVEL`: passed as is to `hledger`. You can use `-2`, `-3`, `-4` or similar depending on the max level you want to use in the conversion.
 
 The output will be the bookings in the standard output.
+
+## Notes
+- The time is not preserved on the taskjuggler booking. Right now it hard-codes the start at `9:00` and adds bookings from there
+- Hard-coded Overtime 1 for all entries
