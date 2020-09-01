@@ -9,9 +9,10 @@ import Foundation
 import LedgerToTaskjuggler
 
 let args = CommandLine.arguments
-if args.count != 5 {
+if args.count != 6 {
     print("Usage: freepla-tj accountPrefix level ledger.timeclock fromDate ToDate")
     print("Dates should be in format yyyy-MM-dd")
+    print("Only \(args.count) arguments were given.")
 } else {
     let accountPrefix = args[1]
     let level = args[2]
