@@ -24,8 +24,8 @@ public func createBookingLines(from: [Booking]) -> [String] {
     }
 }
 
-public func getNewBookings(from: String, accountPrefix: String) -> [Booking] {
-    let lines = from.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: "\n")
+public func getNewBookings(csv: String, accountPrefix: String) -> [Booking] {
+    let lines = csv.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: "\n")
     let matrix = lines
       .map { $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: CharacterSet(charactersIn: "\"h")) } }
     return matrix[1..<matrix.count-1].flatMap { row -> [Booking] in
@@ -39,6 +39,12 @@ public func getNewBookings(from: String, accountPrefix: String) -> [Booking] {
 
     }
 }
+
+public func getNewBookings(timeclock: String, accountPrefix: String) -> [Booking] {
+    let lines = timeclock.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: "\n")
+    return []
+}
+
 
 //func getDateRange(bookingsFilename: String) -> (String, String)? {
 //    let bookings = try! String(contentsOfFile: bookingsFilename)

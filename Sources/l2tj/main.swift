@@ -29,7 +29,7 @@ if args.count != 6 {
         launchPath: "/usr/bin/env",
         arguments: arguments)
 
-    let newBookings = getNewBookings(from: newBookingsStr, accountPrefix: accountPrefix)
+    let newBookings = getNewBookings(csv: newBookingsStr, accountPrefix: accountPrefix)
     let newBookingsForFile = createBookingLines(from: newBookings)
     print(newBookingsForFile.joined(separator: "\n"))
 }
